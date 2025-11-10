@@ -1,3 +1,4 @@
+use chrono::Local;
 use clap::{ArgAction, Parser};
 use regex::RegexBuilder;
 use std::{
@@ -81,12 +82,14 @@ fn write_header_on_file(
     let student_name_text = format!("Name: {}  \n", args.name);
     let student_number_text = format!("Student number: {}  \n", args.student_number);
     let class_text = format!("Class: {}  \n", args.class);
+    let date_text = format!("Date: {}  \n", Local::now().format("%d/%m/%Y"));
 
     buf_writer.write(h1_text.as_bytes())?;
     buf_writer.write(String::from("  \n").as_bytes())?;
     buf_writer.write(student_name_text.as_bytes())?;
     buf_writer.write(student_number_text.as_bytes())?;
     buf_writer.write(class_text.as_bytes())?;
+    buf_writer.write(date_text.as_bytes())?;
     buf_writer.write(String::from("  \n").as_bytes())?;
 
     Ok(())
