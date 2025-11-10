@@ -56,7 +56,7 @@ struct Args {
     #[arg(short, long)]
     student_number: u32,
 
-    #[arg(short, long, value_parser = clap::value_parser!(AssignmentFiles), action = ArgAction::Append, num_args = 1..)]
+    #[arg(short, long, value_parser = clap::value_parser!(AssignmentFiles), action = ArgAction::Append, num_args = 1.., required = true)]
     assignment_files: Vec<AssignmentFiles>,
 
     #[arg(short, long)]
