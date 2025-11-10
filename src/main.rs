@@ -18,13 +18,13 @@ impl FromStr for AssignmentFiles {
         let as_chars: Vec<char> = s.chars().collect();
 
         let s = String::from_iter(as_chars.as_slice().iter());
-        let paths: Vec<&str> = s.split(' ').collect();
+        let paths: Vec<&str> = s.split(['\n', ' ', '\t']).collect();
 
         if paths.len() == 0 {
             return Err(String::from("No file paths have been supplied."));
         }
 
-        let regex = RegexBuilder::new("(\\/?[^:/\0]+)+").build().unwrap();
+        let regex = RegexBuilder::new("(/?[^:/\0]+)+").build().unwrap();
 
         let mut v: Vec<String> = Vec::new();
 
